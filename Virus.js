@@ -133,7 +133,7 @@ let dead = 0
 let maxDead = 1
 let totDead = [0]
 function setup(){
-    createCanvas(screen.width+500,screen.height*3)
+    createCanvas(2420,3240)
     let cb1 = createCheckbox('Cancel work/school', false)
     cb1.changed(function(){noGath=!(noGath)})
     let cb2 = createCheckbox('Quarintine at home', false)
