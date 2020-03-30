@@ -161,34 +161,34 @@ class sim{
         }
         this.time-=1
         if(this.time==0){
-            this.totDead.push(this.dead)
-            if(this.dead>this.maxDead){this.maxDead=this.dead}
-            this.dead=0
-            this.time =500
-            this.type=Math.round(Math.random()*2)
-            if(qua){this.type=0}
-            if(this.type==1 && noGath){this.type = 2}
+            this.nextWeek()
         }
         if(trav){
-            let thing = true
-            let from
-            while(thing){
-                thing = false
-                from = Math.floor(Math.random()*this.country.length)
-                if(this.country[from].meepleList.length==0){
-                    thing=true
-                }
-            }
-            let to = Math.floor(Math.random()*this.country.length)
-            let touristNum = Math.floor(this.country[from].meepleList.length*Math.random())
-            let tourist = this.country[from].meepleList[touristNum]
-            this.country[from].meepleList.splice(touristNum,1)
-            this.country[to].meepleList.push(tourist)
+            this.travell()
         }
         fill(color(0,0,0))
         text(("Next week in: ").concat(this.time),10,height-50)
         text(("Week number: ").concat(this.totDead.length),10,height-30)
         this.graph()
+    }
+    nextWeek(){
+        this.totDead.push(this.dead)
+        if(this.dead>this.maxDead){this.maxDead=this.dead}
+        this.dead=0
+        this.time =500
+        this.type=Math.round(Math.random()*2)
+        if(qua){this.type=0}
+        if(this.type==1 && noGath){this.type = 2}
+    }
+    travell(){
+            let from= Math.floor(Math.random()*this.country.length)
+            if(this.country[from].meepleList.length!=0){
+                let to = Math.floor(Math.random()*this.country.length)
+                let touristNum = Math.floor(this.country[from].meepleList.length*Math.random())
+                let tourist = this.country[from].meepleList[touristNum]
+                this.country[from].meepleList.splice(touristNum,1)
+                this.country[to].meepleList.push(tourist)
+            }
     }
     graph(){
         fill(color(255,255,255))
